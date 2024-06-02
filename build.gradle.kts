@@ -32,3 +32,19 @@ dependencies {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+//sourceSets {
+//    create("slowTest")
+//}
+
+tasks.register<Test>("slowTest") {
+    useJUnitPlatform {
+        includeTags("slow")
+    }
+}
+
+tasks.register<Test>("fastTest") {
+    useJUnitPlatform {
+        includeTags("fast")
+    }
+}
