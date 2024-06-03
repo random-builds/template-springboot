@@ -84,6 +84,6 @@ jobs:
             --strip-debug \
             --no-man-pages \
             --no-header-files \
-            --compress=zip-9
+            --compress=zip-9 \
             --output jre
           docker build --rm -t app:1 .
