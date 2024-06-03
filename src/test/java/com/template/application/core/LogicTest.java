@@ -17,6 +17,6 @@ public class LogicTest {
     @Test
     void getString_shouldReturnHelloWorld_whenCalled() {
         String result = logic.getString();
-        assertEquals("Hello Worsld!", result, "Expected getString() to return 'Hello World!'");
+        assertEquals("Hello World!", result, "Expected getString() to return 'Hello World!'");
     }
 }
