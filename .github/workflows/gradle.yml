@@ -73,4 +73,17 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
       - name: Publish
-        run: echo published
+        run: |
+          ./gradlew bootJar
+          unzip build/libs/* -d /tmp/libs
+          jlink --add-modules `jdeps --class-path '/tmp/libs/BOOT-INF/lib/*' \
+            --multi-release 21 \
+            --recursive \
+            --print-module-deps \
+            --ignore-missing-deps build/libs/*` \
+            --strip-debug \
+            --no-man-pages \
+            --no-header-files \
+            --compress=zip-9
+            --output jre
+          docker build --rm -t app:1 .
